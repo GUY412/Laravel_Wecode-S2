@@ -28,10 +28,12 @@
             class="w-full object-cover h-auto mb-4">
             <p> {{$article->title}} </p>
             <div class="flex items-center gap-2 w-full mt-6">
-                <a href="#" class="text-white bg-yellow-500 hover:bg-yellow-600 px-4 py-1
+                <a href="{{route('articles.edit', $article->id)}}" class="text-white bg-yellow-500 hover:bg-yellow-600 px-4 py-1
                 rounded-md">Modifier</a>
-                <form action="" method="POST">
+                <form action="{{route('articles.destroy', $article->id)}}"
+                     method="POST">
                     @csrf
+                    @method('DELETE')
                     <button class="text-white bg-red-500 hover:bg-red-600 px-4 py-1
                 rounded-md">
                 Suprimer
