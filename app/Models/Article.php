@@ -9,7 +9,7 @@ class Article extends Model
 {
     use HasFactory;
 
-    public function author(){
+    public function autor(){
         return $this->belongsTo(User::class);
     }
 

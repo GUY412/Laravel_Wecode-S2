@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\WelcomeMail;
 use App\Models\User;
-use Illuminate\Container\Attributes\Auth as AttributesAuth;
 use Illuminate\Support\Facades\Auth;
 
-// use Auth;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
@@ -23,7 +20,7 @@ class AuthController extends Controller
 
    public function showFormLogin(){
         if(Auth::check()){
-            return redirect()->route('dashbord');
+            return redirect()->route('dashboard');
         }
         return view('auth.login');
     }
@@ -35,7 +32,7 @@ class AuthController extends Controller
         ]);
 
         if(Auth::attempt($request->only("email","password"))){
-            return redirect()->intended('dashbord');
+            return redirect()->intended('dashboard');
         }
 
         return back()->withErrors(["email"=> "Les informations fournies ne correspondent pas !"]);
@@ -54,8 +51,7 @@ class AuthController extends Controller
             'email'=> $request->email,
             'password'=> Hash::make($request->password),
         ]);
-        Mail::to($users-> email)->send(new WelcomeMail($users));
-        return back()->with('success', "Inscription reussie ! Un email de Bienvenue a été envoyé");
+        return redirect('dashboard')->with('success', "Inscription reussie ! Un email de Bienvenue a été envoyé");
     }
 
     public function logout(){

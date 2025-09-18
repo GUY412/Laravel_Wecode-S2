@@ -2,32 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
 use App\Models\Category;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\View;
-
 class BlogController extends Controller
 {
     public function readCategories(){
         $categories = Category::all();
-        return view('blog.create', compact('categories'));
+        return view('articles.create', compact('categories'));
     }
 
     public function create(){
         return view('articles.create');
     }
 
-    public function store(Request $request){
+    public function store(ArticleRequest $request){
         
-        $validatedData = $request->validate([
-            'title'=> 'required|string|max:255',
-            'description'=> 'required|string',
-            'category'=> 'required|string|max:255',
-            'image'=> 'nullable|image|mimes:jpeg,jpg,png,svg|max:2048',
-            'autor_id'=>'nullable'
-        ]);
+        $validatedData = $request->validated();
 
 
 
@@ -100,6 +94,11 @@ class BlogController extends Controller
     public function home(){
         $articles = Article::all();
         return view('articles.index',['articles'=>$articles]);
+    }
+
+    public function show($id) : View{
+        $articles = Article::with('autor')->findOrFail($id);
+        return view('articles.show', ['article'=>$articles]);
     }
 }
 

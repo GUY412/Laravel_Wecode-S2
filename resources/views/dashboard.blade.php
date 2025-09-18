@@ -9,7 +9,7 @@
 
 <div class="flex items-center justify-between my-4">
     <a href="{{route('articles.create')}}"
-    class="py-2 px-4 bg-green-500 hover:bg-green-700 text-white rounded-md">
+    class="py-2 px-4 bg-blue-500 hover:bg-green-700 text-white rounded-md">
     Créer un article
     </a>
     <form action="{{route('logout')}}" method="POST">
@@ -19,10 +19,25 @@
     </button>
 </form>
 </div>
-</div>
+
+@if (session('success'))
+    <div class="bg-green-100 text-green-500 p-3">
+        {{session('success')}}
+    </div>
+    @elseif (session('update'))
+    <div class="bg-blue-100 text-blue-500 p-3">
+        {{session('success')}}
+    </div>
+      @elseif (session('delete'))
+    <div class="bg-red-100 text-red-500 p-3">
+        {{session('success')}}
+    </div>
+@endif
+
 
 <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
     @foreach($articles as $article )
+    @if ($article->autor_id == Auth::id())
         <li class="border border-gray-300 p-2 my-2">
             <img src="{{asset($article->image)}}" alt="{{$article->title}}" 
             class="w-full object-cover h-auto mb-4">
@@ -41,7 +56,9 @@
                 </form>
             </div>
         </li>
+        @endif
     @endforeach
 </ul>
+</div>
 
 @endsection

@@ -3,9 +3,10 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::get('/',[BlogController::class,'home'])->name('home');
+
+
 
 Route::get('/register', [AuthController::class, 'showSignUp'])->name('register');
 Route::post('/register', [AuthController::class, 'signUp'])->name('registration.register');
@@ -22,6 +23,8 @@ Route::get('/articles/create', [BlogController::class, 'create'])->name('article
 
 Route::post('/articles', [BlogController::class, 'store'])->name('articles.store')
 ->middleware('auth');
+
+Route::get('/articles/{id}',[BlogController::class,'show'])->name('articles.show');
 
 Route::post('/dashboard', [BlogController::class, 'dashboardArticle'])->name('dashboard');
 
