@@ -32,6 +32,7 @@
                         {{$comment->body}}
                     </p>
                 </div>
+                @if ($article->autor_id == Auth::id())
                 <form action="{{route('comment.delete', $comment->id)}}"
                      method="POST">
                     @csrf
@@ -41,6 +42,7 @@
                 Suprimer
                     </button>
                 </form>
+                @endif
                 @endforeach
             </div>
              <form action="{{route ("commentaire",$article->id)}}" method="POST">

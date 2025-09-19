@@ -54,6 +54,7 @@
             <div class="flex items-center gap-2 w-full mt-6">
                 <a href="{{route('articles.edit', $article->id)}}" class="text-white bg-yellow-500 hover:bg-yellow-600 px-4 py-1
                 rounded-md">Modifier</a>
+                
                 <form action="{{route('articles.destroy', $article->id)}}"
                      method="POST">
                     @csrf
@@ -63,6 +64,9 @@
                 Suprimer
                     </button>
                 </form>
+                <a href="{{route('articles.show',$article->id)}}" class="text-white bg-blue-500 hover:bg-blue-800 px-4
+            py-1 rounded-md">Lire l'article</a>
+        </li>
             </div>
         </li>
         @endif

@@ -12,8 +12,8 @@
     <nav class="bg-gray-800 p-4 flex justify-between space-x-4">
         <div flex justify-between space-x-4>
             <ul class="flex items-center gap-2">
-                <li><a href="{{route('home')}}" class="text-gray-300 hover:texte-white">Acceuil</a></li>
-                <li><a href="#" class="text-gray-300 hover:texte-white">Contact</a></li>
+                <li><a href="{{route('home')}}" class="text-gray-300 hover:texte-white"><strong>MY BLOG</strong></a></li>
+                
 
             </ul>
         </div>

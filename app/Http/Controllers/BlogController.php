@@ -101,7 +101,6 @@ class BlogController extends Controller
         return view('articles.show', ['article'=>$articles]);
     }
 
-    public funct
 }
 
 
