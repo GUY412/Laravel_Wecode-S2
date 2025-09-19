@@ -10,7 +10,7 @@
 <div class="p-4">
     <h1 class="mt-6 font-bold text-6xl upercase mb-6">{{$article->title}}</h1>
     <img src="{{asset($article->image)}}" alt="{{$article->title}}" 
-    class="w-full object-cover h-auto mb-4">
+    class=" width=50 height=50 object-cover h-auto mb-4">
     <p> {{$article->description}} </p>
     <p class="italic">CREER par: <strong>{{$article->autor->name}}</strong></p>
 </div>
@@ -24,7 +24,11 @@
                 <div class="border rounded-md p-3 ml-3 my-3">
                     <div class="flex gap-3 items-center">
                         <h3 class="font-bold">
-                            {{$comment->user->name}}
+                            @foreach ( $users as $user )   
+                            @if($comment->user_id == $user->id)
+                            {{$user->name}}
+                            @endif
+                            @endforeach
                         </h3>
                         {{$comment->created_at->diffForHumans()}}
                     </div>

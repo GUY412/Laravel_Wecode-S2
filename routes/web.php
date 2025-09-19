@@ -25,7 +25,8 @@ Route::get('/articles/create', [BlogController::class, 'create'])->name('article
 
 Route::post('/articles', [BlogController::class, 'store'])->name('articles.store')
 ->middleware('auth');
-Route::get('/articles/{id}',[BlogController::class,'show'])->name('articles.show');
+Route::get('/articles/{id}',[BlogController::class,'show'])->name('articles.show')
+->middleware('auth');
 
 Route::post('/dashboard', [BlogController::class, 'dashboardArticle'])->name('dashboard');
 
@@ -38,13 +39,19 @@ Route::put('/articles/{id}', [BlogController::class, "update"])->name('articles.
 Route::delete('/articles/{id}', [BlogController::class, "destroy"])->name('articles.destroy')
 ->middleware('auth');
 
-Route::get('/mon-profile', [AutorProfileController::class, 'autor'])->name('profile');
+Route::get('/mon-profile', [AutorProfileController::class, 'autor'])->name('profile')
+->middleware('auth');
+
 Route::put('/modifier-profile', [AutorProfileController::class, 'modifier'])->name('edit-profile');
 
-Route::post('/articles/{id}/comments', [CommentsController::class, 'comment'])->name('commentaire');
+Route::post('/articles/{id}/comments', [CommentsController::class, 'comment'])->name('commentaire')
+->middleware('auth');
 
 Route::delete('/comments/{id}', [CommentsController::class, 'delete'])->name('comment.delete');
 
+Route::get('/Admin', [BlogController::class, 'dashboard'])->name('user.dashboard');
+
+Route::delete('/user/{id}', [BlogController::class, 'deleteUser'])->name('users.delete');
 
 
 

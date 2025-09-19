@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ArticleRequest;
+use App\Models\Comment;
 use App\Models\Article;
+use App\Models\User;
 use App\Models\Category;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -97,9 +99,26 @@ class BlogController extends Controller
     }
 
     public function show($id) : View{
-        $articles = Article::with('autor')->findOrFail($id);
-        return view('articles.show', ['article'=>$articles]);
+        $users= User::all();
+        $article = Article::with('autor')->findOrFail($id);
+        return view('articles.show', compact('article', 'users'));
     }
+
+    public function dashboard(){
+        $users = User::all();
+        $articles = Article::all();
+        $comments = Comment::all();
+        $categories = Category::all();
+
+        return view('auth.AdminDashbord', compact('users', 'articles', 'comments', 'categories'));
+    }
+
+      public function deleteUser($id){
+        $user = User::findOrFail($id);
+        $user -> delete();
+        return redirect()->route('user.dashboard')->with('delete', 'supprimé avec succes');
+    }
+    
 
 }
 
