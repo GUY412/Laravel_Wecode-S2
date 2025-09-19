@@ -25,8 +25,10 @@ class CommentsController extends Controller
 
     public function delete($id){
         $comment = Comment::findOrFail($id);
+        $article= $comment -> article_id;
+
         $comment -> delete();
-        return redirect()->route('articles.show')->with('delete', 'commentaire supprimé avec succes');
+        return redirect()->route('articles.show', $article)->with('delete', 'commentaire supprimé avec succes');
     }
 
 }

@@ -17,8 +17,7 @@
 </div>
 <div class=" bg-white rounded-lg border p-2 my-4 mx-6">
         <h3 class="font-bold">Discussion</h3>
-        <form action="{{route ("commentaire",$article->id)}}" method="POST">
-            @csrf
+       
             
             <div class="flex flex-col">
                  @foreach ($article->comments()->latest()->get() as $comment)
@@ -33,9 +32,19 @@
                         {{$comment->body}}
                     </p>
                 </div>
-                <a href=""></a>
+                <form action="{{route('comment.delete', $comment->id)}}"
+                     method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button class="text-white bg-red-500 hover:bg-red-600 px-4 py-1
+                rounded-md">
+                Suprimer
+                    </button>
+                </form>
                 @endforeach
             </div>
+             <form action="{{route ("commentaire",$article->id)}}" method="POST">
+            @csrf
             <div class="w-full px-3 my-2">
                 <textarea
                     class="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"

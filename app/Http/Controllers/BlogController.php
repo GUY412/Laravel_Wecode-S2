@@ -100,6 +100,8 @@ class BlogController extends Controller
         $articles = Article::with('autor')->findOrFail($id);
         return view('articles.show', ['article'=>$articles]);
     }
+
+    public funct
 }
 
 

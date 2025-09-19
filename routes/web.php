@@ -43,7 +43,7 @@ Route::put('/modifier-profile', [AutorProfileController::class, 'modifier'])->na
 
 Route::post('/articles/{id}/comments', [CommentsController::class, 'comment'])->name('commentaire');
 
-Route::get('/articles/{id}/comments', [CommentsController::class, 'comment'])->name('commentaire');
+Route::delete('/comments/{id}', [CommentsController::class, 'delete'])->name('comment.delete');
 
 
 
