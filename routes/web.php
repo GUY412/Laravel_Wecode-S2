@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CommentsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AutorProfileController;
 
@@ -39,5 +40,12 @@ Route::delete('/articles/{id}', [BlogController::class, "destroy"])->name('artic
 
 Route::get('/mon-profile', [AutorProfileController::class, 'autor'])->name('profile');
 Route::put('/modifier-profile', [AutorProfileController::class, 'modifier'])->name('edit-profile');
+
+Route::post('/articles/{id}/comments', [CommentsController::class, 'comment'])->name('commentaire');
+
+Route::get('/articles/{id}/comments', [CommentsController::class, 'comment'])->name('commentaire');
+
+
+
 
 

@@ -17,6 +17,10 @@ class Article extends Model
         return $this->belongsTo(Category::class);
     }
 
+      public function comments(){
+        return $this->hasMany(Comment::class);
+    }
+
     protected $fillable = ['title', 'description', 'category_id', 'image', 'autor_id'];
     protected $guarded = ['id'];
 }

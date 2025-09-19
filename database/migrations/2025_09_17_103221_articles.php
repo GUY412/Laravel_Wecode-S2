@@ -23,11 +23,9 @@ return new class extends Migration
             $table->longText('description');
             $table->string('image');
             $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('users')->onDelete
-            ('cascase');
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->unsignedBigInteger('autor_id');
-            $table->foreign('author_id')->references('id')->on('users')->onDelete
-            ('cascase');
+            $table->foreign('autor_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
