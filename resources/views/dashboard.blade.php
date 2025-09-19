@@ -12,12 +12,21 @@
     class="py-2 px-4 bg-blue-500 hover:bg-green-700 text-white rounded-md">
     Créer un article
     </a>
+    <div class="p-6">
     <form action="{{route('logout')}}" method="POST">
     @csrf
     <button type="submit" class="py-2 px-4 bg-red-500 hover:bg-red-700 text-white rounded-md">
         Déconnexion
     </button>
 </form>
+</div>
+  <div class="p-6">
+    @csrf
+    <a class="py-2 px-4 bg-gray-500 hover:bg-gray-700 text-white rounded-md"
+    href="{{route('profile')}}">
+        Profile
+  </a>
+</div>
 </div>
 
 @if (session('success'))

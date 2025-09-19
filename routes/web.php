@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AutorProfileController;
 
 Route::get('/',[BlogController::class,'home'])->name('home');
 
@@ -23,7 +24,6 @@ Route::get('/articles/create', [BlogController::class, 'create'])->name('article
 
 Route::post('/articles', [BlogController::class, 'store'])->name('articles.store')
 ->middleware('auth');
-
 Route::get('/articles/{id}',[BlogController::class,'show'])->name('articles.show');
 
 Route::post('/dashboard', [BlogController::class, 'dashboardArticle'])->name('dashboard');
@@ -36,3 +36,8 @@ Route::put('/articles/{id}', [BlogController::class, "update"])->name('articles.
 
 Route::delete('/articles/{id}', [BlogController::class, "destroy"])->name('articles.destroy')
 ->middleware('auth');
+
+Route::get('/mon-profile', [AutorProfileController::class, 'autor'])->name('profile');
+Route::put('/modifier-profile', [AutorProfileController::class, 'modifier'])->name('edit-profile');
+
+
